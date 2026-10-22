@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Tablero N x N</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- Encabezado principal -->
+    <header>
+        <h1>Juego de Tablero N x N</h1>
+    </header>
+
+    <!-- Estructura semántica <main> a dos columnas para llenar la pantalla -->
+    <main>
+        
+        <!-- Panel de Opciones (Controles) -->
+        <aside class="panel-opciones">
+            <h2>Configuración</h2>
+
+            <div class="campo-control">
+                <label for="dim">Dimensión N:</label>
+                <select id="dim" data-control="dimension">
+                    <option value="3" selected>3x3</option>
+                    <option value="4">4x4</option>
+                    <option value="5">5x5</option>
+                </select>
+            </div>
+
+            <div class="campo-control">
+                <label for="tamano">Tamaño Fichas:</label>
+                <select id="tamano" data-control="tamano">
+                    <option value="pequena">Pequeña</option>
+                    <option value="mediana" selected>Mediana</option>
+                    <option value="grande">Grande</option>
+                </select>
+            </div>
+
+            <div class="campo-control">
+                <label for="aspecto">Forma / Aspecto:</label>
+                <select id="aspecto" data-control="aspecto">
+                    <option value="circulo" selected>Círculo</option>
+                    <option value="cuadrado">Cuadrado</option>
+                    <option value="triangulo">Triángulo</option>
+                </select>
+            </div>
+
+            <button id="btn-reiniciar" data-action="reiniciar">Nueva Partida</button>
+
+            <div class="instrucciones">
+                <h3>Reglas del juego:</h3>
+                <p>Arrastra y suelta (<em>Drag & Drop</em>) una ficha sobre otra para intercambiarlas.</p>
+                <p>Ganas cuando cada fila contenga fichas de un único tipo.</p>
+            </div>
+        </aside>
+
+        <!-- Área del Tablero y Asistencia al Usuario -->
+        <section class="area-juego">
+            <div id="tablero" class="tablero" data-dimension="3">
+                <!-- Las celdas y fichas se generarán dinámicamente con JS -->
+            </div>
+
+            <!-- Asistencia/Feedback con position: absolute -->
+            <div id="mensaje-victoria" class="victoria oculto" data-ui="victoria">
+                <h2>¡Enhorabuena! 🎉</h2>
+                <p>Has completado todas las filas correctamente.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Archivos JavaScript (Arquitectura MVC) -->
+    <script src="../js/modelo.js"></script>
+    <script src="../js/vista.js"></script>
+    <script src="../js/controlador.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

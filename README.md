@@ -1,1 +1,0 @@
-# ipo2627_cuba_tablero
