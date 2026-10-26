@@ -12,26 +12,40 @@ class ModeloJuego {
 
     inicializarTablero() {
         this.juegoGanado = false; 
-        const totalCeldas = this.dimension * this.dimension;
         const fichas = []; 
 
-        // repartimos equilibradamente los tipos de ficha
-        for (let i = 0; i < totalCeldas; i++) {
-            const tipo = (i % 3) + 1; // Cambiar 3 por la dimension?
-            fichas.push(tipo); //obtenemos finalmente una lista con 1,2,3 repetidos
+        // 1. Calculamos cuántas FILAS COMPLETAS de tamaño N le tocan a cada tipo de ficha
+        const filasPorTipo = [
+            Math.floor(this.dimension / 3),
+            Math.floor(this.dimension / 3),
+            Math.floor(this.dimension / 3)
+        ];
+
+        // Las filas sobrantes (cuando N no es múltiplo de 3, ej: 4x4 o 5x5) se reparten
+        let sobrantes = this.dimension % 3;
+        for (let i = 0; i < sobrantes; i++) {
+            filasPorTipo[i]++;
         }
 
-        // Mezcla aleatoriamente recorriendo cada ficha e intercambiandola por otra aleatoria
+        // 2. Generamos el total exacto de fichas por cada uno de los 3 colores
+        for (let tipo = 0; tipo < 3; tipo++) {
+            const numFichas = filasPorTipo[tipo] * this.dimension;
+            for (let j = 0; j < numFichas; j++) {
+                fichas.push(tipo + 1); 
+            }
+        }
+
+        // 3. Mezcla aleatoriamente recorriendo cada ficha e intercambiándola por otra aleatoria
         for (let i = fichas.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [fichas[i], fichas[j]] = [fichas[j], fichas[i]];
         }
 
-        // Convertir el vector plano a una matriz NxN
+        // 4. Convertir el vector plano a una matriz NxN
         this.tablero = [];
         for (let fila = 0; fila < this.dimension; fila++) {
-            const filaFichas = fichas.slice(fila * this.dimension, (fila + 1) * this.dimension); //mirar esto
-            this.tablero.push(filaFichas); //crea una matriz con cada fila
+            const filaFichas = fichas.slice(fila * this.dimension, (fila + 1) * this.dimension); 
+            this.tablero.push(filaFichas); // Crea una matriz agregando cada fila
         }
 
         // Si casualmente arranca resuelto, volvemos a mezclar

@@ -1,5 +1,10 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
-    /* Paleta HSL - Tema Oscuro Elegante */
     --bg-principal: hsl(220, 20%, 12%);
     --bg-tarjeta: hsl(220, 18%, 18%);
     --bg-elevado: hsl(220, 15%, 24%);
@@ -11,23 +16,16 @@
     --primario-hover: hsl(210, 85%, 65%);
     --borde: hsl(220, 15%, 28%);
 
-    /* Paleta Triádica para los 3 tipos de fichas */
-    --ficha-tipo1: hsl(350, 80%, 60%); /* Rojo/Rosa */
-    --ficha-tipo2: hsl(150, 70%, 45%); /* Verde */
-    --ficha-tipo3: hsl(45, 90%, 55%);  /* Amarillo/Dorado */
+    --ficha-tipo1: hsl(350, 80%, 60%); 
+    --ficha-tipo2: hsl(150, 70%, 45%); 
+    --ficha-tipo3: hsl(45, 90%, 55%); 
 
-    /* Espaciados y Bordes */
     --gap-espacio: 1.25rem;
     --radio-borde: 12px;
     --sombra: 0 8px 24px rgba(0, 0, 0, 0.3);
     --fuente: system-ui, -apple-system, sans-serif;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
 body {
     font-family: var(--fuente);
@@ -185,7 +183,6 @@ button:active {
     background-color: hsl(210, 85%, 20%);
 }
 
-/* Fichas */
 .ficha {
     cursor: grab;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
